@@ -1,0 +1,36 @@
+version: "3"
+services:
+  send:
+    container_name: send_project
+    restart: always
+    stdin_open: true
+    volumes:
+      - ./src:/app/src
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  receive:
+    container_name: receive_project
+    restart: always
+    stdin_open: true
+    volumes:
+      - ./src:/app/src
+    build:
+      context: .
+      dockerfile: Dockerfile.receive
+    ports:
+      - "3001:3000"
+
+  rabbitmq:
+    container_name: "rabbitmq"
+    image: rabbitmq:3.8-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypassword
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+

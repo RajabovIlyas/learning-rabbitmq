@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development nodemon"
+    "send": "cross-env NODE_ENV=development nodemon",
+    "receive": "cross-env NODE_ENV=development  ts-node -r tsconfig-paths/register --transpile-only src/receive.ts"
   },
   "author": "",
   "license": "ISC",
